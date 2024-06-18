@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .unity-canvas {
+    outline: 8.736px solid #fff;
+    background: #f6f7fa;
+    border-radius: 28.295px;
+    box-shadow: 0px 1.456px 41.494px 0px rgba(0, 0, 0, 0.12);
+    z-index: 20;
+    border-radius: 28.295px;
+    border: none;
+  }
+
+  .tooltip {
+    position: absolute;
+    top: -40px; /* Adjust the position as needed */
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 10px;
+    z-index: 1;
+    white-space: nowrap;
+  }
+  .tooltip::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -10px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #333;
+  }
+
+  .button-play::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: 0.5px solid white;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: scale-up 1.5s ease-in-out infinite;
+  }
+
+  @keyframes scale-up {
+    0%,
+    100% {
+      transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+      transform: translate(-50%, -50%) scale(1.5);
+    }
+  }
+
+  @keyframes rotateUnicorn {
+    0%,
+    27% {
+      transform: translateX(40%) rotate(0deg);
+    }
+    50%,
+    77% {
+      transform: translateX(40%) rotate(180deg);
+    }
+    100% {
+      transform: translateX(40%) rotate(0deg);
+    }
+  }
+
+  @keyframes rotateDottedCircle {
+    0%,
+    27% {
+      transform: translateX(-40%) scale(0.75) rotate(0deg);
+    }
+    50%,
+    77% {
+      transform: translateX(-40%) scale(0.75) rotate(-120deg);
+    }
+    100% {
+      transform: translateX(-40%) scale(0.75) rotate(0deg);
+    }
+  }
+
+  .animate-unicorn {
+    animation: rotateUnicorn 6s ease-in-out 1s infinite;
+    
+  }
+
+  .animate-dottedcircle {
+    animation: rotateDottedCircle 6s ease-in-out infinite;
+  }
+}
+
+@font-face {
+  font-family: "Google Sans";
+  src: url("assets/fonts/GoogleSans-Bold-v1.27.ttf");
+}
+@font-face {
+  font-family: "Google Sans Regular";
+  src: url("assets/fonts/GoogleSans-Regular.ttf");
+}
