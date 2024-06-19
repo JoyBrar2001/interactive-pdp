@@ -1,7 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from 'framer-motion';
-import LoadingScreen from "./components/LoadingScreen";
+import axios from 'axios';
+import { v4 as uuid } from 'uuid';
 import { IoClose } from "react-icons/io5";
+
+
+import LoadingScreen from "./components/LoadingScreen";
 
 import bg1 from './assets/BestTake-1.png';
 import bg2 from './assets/BestTake-2.png';
@@ -20,6 +24,9 @@ const assets = [
   ToolTip,
 ];
 
+const timeRef = Date.now();
+console.log(timeRef);
+
 function App() {
   const [currentBg, setCurrentBg] = useState(bg1);
   const [currentButton, setCurrentButton] = useState(Man1);
@@ -30,6 +37,55 @@ function App() {
   const [progress, setProgress] = useState(0);
 
   const [clicked, setClicked] = useState(false);
+
+  const uuidRef = useRef(uuid());
+
+  const handleAnalytics = (type) => {
+    const timeSpent = (Date.now() - parseInt(timeRef)) / 1000;
+    const obj = {
+      type: type,
+      timeSpent: type === "enter" ? null : timeSpent,
+      session: uuidRef.current,
+      feature: 'BestTake',
+    };
+    console.log(obj);
+
+    fetch("https://c2sanalytics-ahvbc6mj5q-uc.a.run.app/api/log", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      keepalive: true,
+      body: JSON.stringify(obj)
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log('Success:', data);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  };
+
+  useEffect(() => {
+    handleAnalytics('enter');
+
+    const beforeUnloadHandler = () => {
+      handleAnalytics('exit');
+    };
+
+    window.addEventListener('beforeunload', beforeUnloadHandler);
+
+    return () => {
+      window.removeEventListener('beforeunload', beforeUnloadHandler);
+      handleAnalytics('exit');
+    };
+  }, []);
 
   useEffect(() => {
     loadAssets(assets);
@@ -53,7 +109,8 @@ function App() {
     console.log("Assets Loaded");
   };
 
-  const handleClick = (bgImage) => {
+  const handleClick = (bgImage, i) => {
+    handleAnalytics(`bestTake-Btn-${i}-click`);
     setCurrentBg(bgImage);
   };
 
@@ -70,7 +127,7 @@ function App() {
 
             <div className="text-white text-center font-googleSans z-50 flex flex-col gap-2 md:gap-4">
               <h1 className="text-3xl md:text-4xl font-medium tracking-wide">Best Take</h1>
-              <p className="text-lg md:text-xl tracking-wide">
+              <p className="sm:text-lg md:text-xl tracking-wide">
                 Combine similar photos into one <br />
                 fantastic picture where everyone <br />
                 looks their best.
@@ -98,12 +155,12 @@ function App() {
               </div>
 
               <div className="flex bg-[#3C4043] rounded-full p-2 gap-1.5">
-                <div className="cursor-pointer" onClick={() => handleClick(bg1)}>
+                <div className="cursor-pointer" onClick={() => handleClick(bg1, 1)}>
                   <img src={Man1} alt="man1" className={`h-12 w-12 transition border-2 rounded-full ${currentBg === bg1 ? "border-white" : "border-transparent"}`} />
                 </div>
 
                 <div className="relative cursor-pointer" onClick={() => {
-                  handleClick(bg2)
+                  handleClick(bg2, 2)
                   setClicked(true);
                 }}>
                   {!clicked && (
@@ -123,14 +180,14 @@ function App() {
                   <img src={Man2} alt="man2" className={`h-12 w-12 transition border-2 rounded-full ${currentBg === bg2 ? "border-white" : "border-transparent"}`} />
                 </div>
 
-                <div className="cursor-pointer" onClick={() => handleClick(bg3)}>
+                <div className="cursor-pointer" onClick={() => handleClick(bg3, 3)}>
                   <img src={Man3} alt="man3" className={`h-12 w-12 transition border-2 rounded-full ${currentBg === bg3 ? "border-white" : "border-transparent"}`} />
                 </div>
               </div>
 
               <div className="flex justify-between w-full px-3 py-2 mt-4">
-                <h6 className="text-left text-white text-sm w-full">Screen images simulated.</h6>
-                <h6 className="text-right text-white text-sm w-full underline cursor-pointer" onClick={() => setDisclaimerVisible(true)}>Disclaimer</h6>
+                <h6 className="text-left text-white text-xs sm:text-sm w-full">Screen images simulated.</h6>
+                <h6 className="text-right text-white text-xs sm:text-sm w-full underline cursor-pointer" onClick={() => setDisclaimerVisible(true)}>Disclaimer</h6>
               </div>
             </div>
 
@@ -152,7 +209,7 @@ function App() {
                       <IoClose size={18} color="white" />
                     </div>
                   </div>
-                  <p className="text-[#80868B]">
+                  <p className="text-[#80868B] max-sm:text-sm">
                     <sup>1</sup>
                     Requires Google Photos app.
                   </p>
