@@ -136,25 +136,25 @@ function App() {
               <div className="flex">
                 <div className="relative bg-[#3C4043]">
                   <div className="w-full h-full p-2 bg-[#141414] rounded-br-xl">
-                    <img src={Woman} alt="woman" className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12" />
+                    <img src={Woman} alt="woman" className="h-12 w-12" />
                   </div>
                 </div>
                 <div className="p-2 bg-[#3C4043] rounded-t-full relative">
                   {!clicked && (
                     <img src={ToolTip} className="absolute -translate-x-[50%] left-[50%] -top-9 sm:-top-10 md:-top-12 scale-[275%] md:scale-[300%]" />
                   )}
-                  <img src={currentButton} alt="current button" className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12" />
+                  <img src={currentButton} alt="current button" className="h-12 w-12" />
                 </div>
                 <div className="relative bg-[#3C4043]">
                   <div className="w-full h-full p-2 bg-[#141414] rounded-bl-xl">
-                    <img src={Child} alt="child" className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12" />
+                    <img src={Child} alt="child" className="h-12 w-12" />
                   </div>
                 </div>
               </div>
 
               <div className="flex bg-[#3C4043] rounded-full p-2 gap-1.5">
                 <div className="cursor-pointer" onClick={() => handleClick(bg1, 1)}>
-                  <img src={Man1} alt="man1" className={`h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 transition border-2 rounded-full ${currentBg === bg1 ? "border-white" : "border-transparent"}`} />
+                  <img src={Man1} alt="man1" className={`h-12 w-12 transition border-2 rounded-full ${currentBg === bg1 ? "border-white" : "border-transparent"}`} />
                 </div>
 
                 <div className="relative cursor-pointer" onClick={() => {
@@ -175,11 +175,11 @@ function App() {
                       className='absolute inset-0 rounded-full transition duration-150 bg-[#F3B702] bg-opacity-65 border-2 border-[#F0C225]'
                     />
                   )}
-                  <img src={Man2} alt="man2" className={`h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 transition border-2 rounded-full ${currentBg === bg2 ? "border-white" : "border-transparent"}`} />
+                  <img src={Man2} alt="man2" className={`h-12 w-12 transition border-2 rounded-full ${currentBg === bg2 ? "border-white" : "border-transparent"}`} />
                 </div>
 
                 <div className="cursor-pointer" onClick={() => handleClick(bg3, 3)}>
-                  <img src={Man3} alt="man3" className={`h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 transition border-2 rounded-full ${currentBg === bg3 ? "border-white" : "border-transparent"}`} />
+                  <img src={Man3} alt="man3" className={`h-12 w-12 transition border-2 rounded-full ${currentBg === bg3 ? "border-white" : "border-transparent"}`} />
                 </div>
               </div>
 
