@@ -1,7 +1,12 @@
 @import './fonts.css';
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.disclaimer{
+  font-family: 'Roboto Condensed', sans-serif;
+}
 
 @layer components {
   .unity-canvas {

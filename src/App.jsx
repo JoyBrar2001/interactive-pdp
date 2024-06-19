@@ -1,9 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from 'framer-motion';
-import axios from 'axios';
 import { v4 as uuid } from 'uuid';
 import { IoClose } from "react-icons/io5";
-
 
 import LoadingScreen from "./components/LoadingScreen";
 
@@ -130,33 +128,33 @@ function App() {
               <p className="sm:text-lg md:text-xl tracking-wide">
                 Combine similar photos into one <br />
                 fantastic picture where everyone <br />
-                looks their best.
+                looks their best.<sup>1</sup>
               </p>
             </div>
 
-            <div className="absolute w-full left-0 right-0 bottom-0 pt-6 bg-[#141414] rounded-t-2xl flex flex-col justify-center items-center">
+            <div className="absolute w-full left-0 right-0 bottom-0 pt-6 bg-[#141414] rounded-t-3xl flex flex-col justify-center items-center">
               <div className="flex">
                 <div className="relative bg-[#3C4043]">
                   <div className="w-full h-full p-2 bg-[#141414] rounded-br-xl">
-                    <img src={Woman} alt="woman" className="h-12 w-12" />
+                    <img src={Woman} alt="woman" className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12" />
                   </div>
                 </div>
                 <div className="p-2 bg-[#3C4043] rounded-t-full relative">
                   {!clicked && (
-                    <img src={ToolTip} className="absolute -translate-x-[50%] left-[50%] -top-12 scale-[300%]" />
+                    <img src={ToolTip} className="absolute -translate-x-[50%] left-[50%] -top-9 sm:-top-10 md:-top-12 scale-[275%] md:scale-[300%]" />
                   )}
-                  <img src={currentButton} alt="current button" className="h-12 w-12" />
+                  <img src={currentButton} alt="current button" className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12" />
                 </div>
                 <div className="relative bg-[#3C4043]">
                   <div className="w-full h-full p-2 bg-[#141414] rounded-bl-xl">
-                    <img src={Child} alt="child" className="h-12 w-12" />
+                    <img src={Child} alt="child" className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12" />
                   </div>
                 </div>
               </div>
 
               <div className="flex bg-[#3C4043] rounded-full p-2 gap-1.5">
                 <div className="cursor-pointer" onClick={() => handleClick(bg1, 1)}>
-                  <img src={Man1} alt="man1" className={`h-12 w-12 transition border-2 rounded-full ${currentBg === bg1 ? "border-white" : "border-transparent"}`} />
+                  <img src={Man1} alt="man1" className={`h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 transition border-2 rounded-full ${currentBg === bg1 ? "border-white" : "border-transparent"}`} />
                 </div>
 
                 <div className="relative cursor-pointer" onClick={() => {
@@ -177,17 +175,21 @@ function App() {
                       className='absolute inset-0 rounded-full transition duration-150 bg-[#F3B702] bg-opacity-65 border-2 border-[#F0C225]'
                     />
                   )}
-                  <img src={Man2} alt="man2" className={`h-12 w-12 transition border-2 rounded-full ${currentBg === bg2 ? "border-white" : "border-transparent"}`} />
+                  <img src={Man2} alt="man2" className={`h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 transition border-2 rounded-full ${currentBg === bg2 ? "border-white" : "border-transparent"}`} />
                 </div>
 
                 <div className="cursor-pointer" onClick={() => handleClick(bg3, 3)}>
-                  <img src={Man3} alt="man3" className={`h-12 w-12 transition border-2 rounded-full ${currentBg === bg3 ? "border-white" : "border-transparent"}`} />
+                  <img src={Man3} alt="man3" className={`h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 transition border-2 rounded-full ${currentBg === bg3 ? "border-white" : "border-transparent"}`} />
                 </div>
               </div>
 
               <div className="flex justify-between w-full px-3 py-2 mt-4">
-                <h6 className="text-left text-white text-xs sm:text-sm w-full">Screen images simulated.</h6>
-                <h6 className="text-right text-white text-xs sm:text-sm w-full underline cursor-pointer" onClick={() => setDisclaimerVisible(true)}>Disclaimer</h6>
+                <h6 className="text-left text-[#DADCE0] text-xs sm:text-sm w-full">
+                  Screen images simulated.
+                </h6>
+                <h6 className="text-right text-[#DADCE0] text-xs sm:text-sm w-full underline cursor-pointer" onClick={() => setDisclaimerVisible(true)}>
+                  Disclaimer
+                </h6>
               </div>
             </div>
 
@@ -201,7 +203,7 @@ function App() {
                     type: "easeInOut",
                     duration: 0.4,
                   }}
-                  className="absolute left-0 right-0 bottom-0 bg-white p-6 rounded-t-2xl"
+                  className="absolute left-0 right-0 bottom-0 bg-white p-6 rounded-t-3xl"
                 >
                   <div className="flex justify-between items-center">
                     <h1 className="text-[#202124] font-medium">Disclaimers</h1>
@@ -209,7 +211,7 @@ function App() {
                       <IoClose size={18} color="white" />
                     </div>
                   </div>
-                  <p className="text-[#80868B] max-sm:text-sm">
+                  <p className="text-[#80868B] max-sm:text-sm disclaimer">
                     <sup>1</sup>
                     Requires Google Photos app.
                   </p>
