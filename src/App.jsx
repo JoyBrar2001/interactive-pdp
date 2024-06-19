@@ -14,12 +14,14 @@ import Man1 from './assets/Man-1.png';
 import Man2 from './assets/Man-2.png';
 import Man3 from './assets/Man-3.png';
 import Woman from './assets/Woman.png';
+
+import Thumbnail from './assets/BestTake-Thumbnail.png';
 import ToolTip from './assets/tooltip.png';
 
 const assets = [
   bg1, bg2, bg3,
   Child, Man1, Man2, Man3, Woman,
-  ToolTip,
+  ToolTip, Thumbnail,
 ];
 
 const timeRef = Date.now();
@@ -30,8 +32,8 @@ function App() {
   const [currentButton, setCurrentButton] = useState(Man1);
   const [disclaimerVisible, setDisclaimerVisible] = useState(false);
 
-  const [loadedAssets, setLoadedAssets] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [entered, setEntered] = useState(false);
   const [progress, setProgress] = useState(0);
 
   const [clicked, setClicked] = useState(false);
@@ -116,7 +118,6 @@ function App() {
         };
       });
     }
-    setLoadedAssets(loaded);
     setIsLoading(false);
     console.log("Assets Loaded");
   };
@@ -131,10 +132,19 @@ function App() {
       <div className="unity-canvas box-border relative max-w-full flex flex-col justify-between overflow-hidden mx-auto aspect-ratio-16/9 h-[80vh] w-[45vh] px-4 pt-12 pb-2">
         {isLoading ? (
           <LoadingScreen progress={progress} />
+        ) : !entered ? (
+          <>
+            <div className="w-full h-full absolute inset-0">
+              <img src={Thumbnail} className="object-cover w-full h-full object-center" />
+              <button onClick={() => setEntered(true)} className="bg-[#017EEA] hover:bg-[#1c629f] transition shadow-xl px-8 py-3 absolute left-[50%] -translate-x-[50%] bottom-[15%] text-white font-medium text-lg rounded-full">
+                Try Now
+              </button>
+            </div>
+          </>
         ) : (
           <>
             <div className="w-full h-full absolute inset-0">
-              <img src={currentBg} className="object-cover w-full h-full object-left" />
+              <img src={currentBg} className="object-cover w-full h-full object-center" />
             </div>
 
             <div className="text-white text-center font-googleSans z-50 flex flex-col gap-2 md:gap-4">
