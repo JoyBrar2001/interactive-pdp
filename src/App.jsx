@@ -78,9 +78,11 @@ function App() {
     };
 
     window.addEventListener('beforeunload', beforeUnloadHandler);
+    window.addEventListener('pagehide', pageHideHandler);
 
     return () => {
       window.removeEventListener('beforeunload', beforeUnloadHandler);
+      window.removeEventListener('pagehide', pageHideHandler);
       handleAnalytics('exit');
     };
   }, []);
