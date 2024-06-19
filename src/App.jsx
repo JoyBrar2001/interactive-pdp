@@ -87,12 +87,12 @@ function App() {
       handleAnalytics('exit b');
     };
 
-    window.addEventListener('beforeunload', beforeUnloadHandler);
+    // window.addEventListener('beforeunload', beforeUnloadHandler);
     document.addEventListener('visibilitychange', visibilityChangeHandler);
     // window.addEventListener('blur', blurHandler);
 
     return () => {
-      window.removeEventListener('beforeunload', beforeUnloadHandler);
+      // window.removeEventListener('beforeunload', beforeUnloadHandler);
       document.removeEventListener('visibilitychange', visibilityChangeHandler);
       // window.removeEventListener('blur', blurHandler);
       handleAnalytics('exit');
