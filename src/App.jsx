@@ -1,14 +1,25 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import Dark from "./assets/Night Sight Dark.png";
-import Light from "./assets/Night Sight Light.png";
-import Moon from "./assets/clear_night.png";
-import Tooltip from './assets/tooltip.png';
 import LoadingScreen from "./components/LoadingScreen";
 
-const assets = [Dark, Light, Moon, Tooltip];
+import bg1 from './assets/BestTake-1.png';
+import bg2 from './assets/BestTake-2.png';
+import bg3 from './assets/BestTake-3.png';
+
+import Child from './assets/Child.png';
+import Man1 from './assets/Man-1.png';
+import Man2 from './assets/Man-2.png';
+import Man3 from './assets/Man-3.png';
+import Woman from './assets/Woman.png';
+
+const assets = [
+  bg1, bg2, bg3,
+  Child, Man1, Man2, Man3, Woman,
+];
 
 function App() {
+  const [currentBg, setCurrentBg] = useState(bg1);
+
   const [loadedAssets, setLoadedAssets] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [progress, setProgress] = useState(0);
@@ -47,6 +58,7 @@ function App() {
     }
     setLoadedAssets(loaded);
     setIsLoading(false);
+    console.log("Assets Loaded");
   };
 
   return (
@@ -57,9 +69,9 @@ function App() {
         ) : (
           <>
             <div className="w-full h-full absolute inset-0">
-              <img src={Light} className="object-cover w-full h-full object-left" />
+              <img src={currentBg} className="object-cover w-full h-full object-left" />
             </div>
-            <div className="absolute inset-0 overflow-hidden h-full w-full">
+            {/* <div className="absolute inset-0 overflow-hidden h-full w-full">
               <motion.div
                 animate={reveal ? { width: 0, height: "100%" } : { width: "100%", height: "100%" }}
                 transition={{ duration: 1 }}
@@ -67,16 +79,21 @@ function App() {
               >
                 <img src={Dark} className="absolute left-0 w-full h-full object-left object-cover" />
               </motion.div>
-            </div>
+            </div> */}
 
             <div className="text-white text-center font-googleSans z-50 flex flex-col gap-2 md:gap-4">
-              <h1 className="text-3xl md:text-4xl font-medium tracking-wide">Night Sight</h1>
+              <h1 className="text-3xl md:text-4xl font-medium tracking-wide">Best Take</h1>
               <p className="text-lg md:text-xl tracking-wide">
-                Capture city lights, starry skies,<br />
-                and portraits in low light.
+                Combine similar photos into one <br />
+                fantastic picture where everyone <br />
+                looks their best.
               </p>
             </div>
 
+            <div className="absolute w-full left-0 right-0 bottom-0 h-64 bg-[#141414] rounded-t-2xl">
+
+            </div>
+            {/*
             <div className="relative text-white z-50 font-googleSans flex flex-col justify-center items-center">
               <div>
                 {!clicked && (
@@ -141,7 +158,7 @@ function App() {
                 )}
               </div>
               <h6 className="text-left max-sm:text-sm w-full mt-[30%]">Screen Image Simulated</h6>
-            </div>
+            </div> */}
           </>
         )}
       </div>
