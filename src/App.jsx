@@ -136,7 +136,13 @@ function App() {
           <>
             <div className="w-full h-full absolute inset-0">
               <img src={Thumbnail} className="object-cover w-full h-full object-center" />
-              <button onClick={() => setEntered(true)} className="bg-[#017EEA] hover:bg-[#1c629f] transition shadow-xl px-8 py-3 absolute left-[50%] -translate-x-[50%] bottom-[10%] text-white font-medium text-lg rounded-full">
+              <button
+                onClick={() => {
+                  setEntered(true)
+                  handleAnalytics("try now")
+                }}
+                className="bg-[#017EEA] hover:bg-[#1c629f] transition shadow-xl px-8 py-3 absolute left-[50%] -translate-x-[50%] bottom-[10%] text-white font-medium text-lg rounded-full"
+              >
                 Try Now
               </button>
             </div>
