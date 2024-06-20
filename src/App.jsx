@@ -219,7 +219,7 @@ function App() {
                   </div>
                 )}
               </div>
-              <h6 className="text-left max-sm:text-sm w-full mt-[30%]">Screen Image Simulated</h6>
+              <h6 className="text-left max-sm:text-[0.5rem] w-full mt-[30%]">Screen Image Simulated</h6>
             </div>
           </>
         )}
