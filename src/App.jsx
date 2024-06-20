@@ -129,14 +129,14 @@ function App() {
 
   return (
     <div className="w-screen h-screen px-5 box-border flex flex-col justify-center items-center gap-7 py-5">
-      <div className="unity-canvas box-border relative max-w-full flex flex-col justify-between overflow-hidden mx-auto aspect-ratio-16/9 h-[80vh] w-[45vh] px-4 pt-12 pb-2">
+      <div className={`unity-canvas box-border relative max-w-full flex flex-col justify-between overflow-hidden mx-auto aspect-ratio-16/9 h-[80vh] w-[45vh] ${isLoading ? '' : 'px-4 pt-12 pb-2'}`}>
         {isLoading ? (
           <LoadingScreen progress={progress} />
         ) : !entered ? (
           <>
             <div className="w-full h-full absolute inset-0">
               <img src={Thumbnail} className="object-cover w-full h-full object-center" />
-              <button onClick={() => setEntered(true)} className="bg-[#017EEA] hover:bg-[#1c629f] transition shadow-xl px-8 py-3 absolute left-[50%] -translate-x-[50%] bottom-[15%] text-white font-medium text-lg rounded-full">
+              <button onClick={() => setEntered(true)} className="bg-[#017EEA] hover:bg-[#1c629f] transition shadow-xl px-8 py-3 absolute left-[50%] -translate-x-[50%] bottom-[10%] text-white font-medium text-lg rounded-full">
                 Try Now
               </button>
             </div>
@@ -208,10 +208,10 @@ function App() {
               </div>
 
               <div className="flex justify-between w-full px-3 py-2 mt-2 sm:mt-4">
-                <h6 className="text-left text-[#DADCE0] text-xs sm:text-sm w-full">
+                <h6 className="text-left text-[#DADCE0] text-[0.5rem] sm:text-sm w-full">
                   Screen images simulated.
                 </h6>
-                <h6 className="text-right text-[#DADCE0] text-xs sm:text-sm w-full underline cursor-pointer" onClick={() => setDisclaimerVisible(true)}>
+                <h6 className="text-right text-[#DADCE0] text-[0.5rem] sm:text-sm w-full underline cursor-pointer" onClick={() => setDisclaimerVisible(true)}>
                   Disclaimer
                 </h6>
               </div>
